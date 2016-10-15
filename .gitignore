@@ -3,3 +3,4 @@
 *.sql
 rango/settings.py
 *.sqlite
+*.sqlite3
