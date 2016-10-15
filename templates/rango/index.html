@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+	<head>
+		<title>Rango</title>
+	</head>
+	<body>
+		<h1>Front Page</h1>
+		<p>Featured today: <strong>{{ boldmessage }}</strong></p>
+		<a href="/rango/about">About</a>
+		<img src="{% static "images/prism.png" %}" alt="Prism with light passing through">
+	</body>
+</html>
