@@ -1,6 +1,9 @@
 *.pyc
 *.swp
 *.sql
-rango/settings.py
 *.sqlite
 *.sqlite3
+
+.DS_Store
+
+rango/settings.py
