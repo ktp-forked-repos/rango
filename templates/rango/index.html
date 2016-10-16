@@ -9,16 +9,34 @@
 	</head>
 	<body>
 		<h1>Front Page</h1>
-		{% if categories %}
-			<h2>Featured Content</h2>
+		{% if categories_by_votes %}
+			<h2>Most popular content</h2>
 			<ul>
-				{% for category in categories %}
-				<li><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a></li>
+				{% for category in categories_by_votes %}
+				<li>
+					<a href="/rango/category/{{ category.slug }}">{{ category.name }}</a>
+					({{ category.votes }})
+				</li>
 				{% endfor %}
 			</ul>
 		{% else %}
-			<strong>No categories found.</strong>
+			<strong>No categories found with votes.</strong>
 		{% endif %}
+
+		{% if categories_by_views %}
+			<h2>Most viewed content</h2>
+			<ul>
+				{% for category in categories_by_views %}
+				<li>
+					<a href="/rango/category/{{ category.slug }}">{{ category.name }}</a>
+					({{ category.views }})
+				</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<strong>No categories found with views.</strong>
+		{% endif %}
+		<a href="/rango/add_category">Add a new category</a><br>
 		<a href="/rango/about">About</a>
 	</body>
 </html>
