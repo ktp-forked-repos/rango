@@ -9,4 +9,4 @@ def index(request):
 
 
 def about(request):
-    return HttpResponse('<h1>About my app</h1><a href="/rango">Home</a>')
+    return render(request, 'rango/about.html')
