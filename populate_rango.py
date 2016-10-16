@@ -34,7 +34,7 @@ def populate():
     add_page(
         cat=django_cat,
         title="Official Django Tutorial",
-        url="https://docs.djangoproject.com/en/1.5/intro/tutorial01/"
+        url="https://docs.djangoproject.com/en/1.10/intro/tutorial01/"
     )
 
     add_page(
@@ -47,6 +47,18 @@ def populate():
         cat=django_cat,
         title="How to Tango with Django",
         url="http://www.tangowithdjango.com/"
+    )
+
+    add_page(
+        cat=django_cat,
+        title="Full stack Python",
+        url="https://www.fullstackpython.com/django.html"
+    )
+
+    add_page(
+        cat=django_cat,
+        title="Django Girls",
+        url="https://tutorial.djangogirls.org/en/"
     )
 
     frame_cat = add_category("Other Frameworks")
