@@ -9,12 +9,13 @@ from rango_app.models import Category, Page
 
 
 def populate():
-    python_cat = add_category('Python')
+    python_cat = add_category('Python', 128, 64)
 
     add_page(
         cat=python_cat,
         title="Official Python Tutorial",
-        url="http://docs.python.org/2/tutorial/"
+        url="http://docs.python.org/2/tutorial/",
+        views=5
     )
 
     add_page(
@@ -29,7 +30,7 @@ def populate():
         url="http://www.korokithakis.net/tutorials/python/"
     )
 
-    django_cat = add_category("Django")
+    django_cat = add_category("Django", 64, 32)
 
     add_page(
         cat=django_cat,
@@ -61,7 +62,7 @@ def populate():
         url="https://tutorial.djangogirls.org/en/"
     )
 
-    frame_cat = add_category("Other Frameworks")
+    frame_cat = add_category("Other Frameworks", 32, 16)
 
     add_page(
         cat=frame_cat,
@@ -88,8 +89,11 @@ def add_page(cat, title, url, views=0):
     return page
 
 
-def add_category(name):
+def add_category(name, views=0, votes=0):
     category = Category.objects.get_or_create(name=name)[0]
+    category.views = views
+    category.votes = votes
+    category.save()
     return category
 
 
