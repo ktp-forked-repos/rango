@@ -9,8 +9,16 @@
 	</head>
 	<body>
 		<h1>Front Page</h1>
-		<p>Featured today: <strong>{{ boldmessage }}</strong></p>
+		{% if categories %}
+			<h2>Featured Content</h2>
+			<ul>
+				{% for category in categories %}
+				<li>{{ category.name }}</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<strong>No categories found.</strong>
+		{% endif %}
 		<a href="/rango/about">About</a>
-		<img src="{% static "images/prism.png" %}" alt="Prism with light passing through">
 	</body>
 </html>
