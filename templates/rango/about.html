@@ -1,15 +1,7 @@
-<!DOCTYPE html>
+{% extends 'rango/base.html' %}
+{% block title %} - About {% endblock %}
 
-{% load staticfiles %}
-
-<html>
-	<head>
-		<title>About Rango</title>
-		<link rel="stylesheet" href="{% static "css/main.css" %}" />
-	</head>
-	<body>
-		<h1>About</h1>
-		<p><a href="/rango">Home</a></p>
-		<p>This website is based on the <a href="http://www.tangowithdjango.com/">Tango with Django</a> tutorial.
-	</body>
-</html>
+{% block body_block %}
+	<h1>About</h1>
+	<p>This website is based on the <a href="http://www.tangowithdjango.com/">Tango with Django</a> tutorial.
+{% endblock %}

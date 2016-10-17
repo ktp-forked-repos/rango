@@ -38,7 +38,7 @@ def category(request, category_name_slug):
 
 
 @login_required
-def add_category(request):
+def add_category(request, category_name_slug=None):
     if request.method == 'POST':
         form = CategoryForm(request.POST)
 
