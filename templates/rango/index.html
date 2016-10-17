@@ -9,6 +9,10 @@
 	</head>
 	<body>
 		<h1>Front Page</h1>
+		{% if user.is_authenticated %}
+			<p>Signed in as {{ user.username }}</p>
+		{% endif %}
+
 		{% if categories_by_votes %}
 			<h2>Most popular content</h2>
 			<ul>
@@ -37,7 +41,8 @@
 			<strong>No categories found with views.</strong>
 		{% endif %}
 		<a href="/rango/add_category">Add a new category</a><br>
-		<a href="/rango/register">Sign up</a>
+		<a href="/rango/register">Sign up</a><br>
+		<a href="/rango/login">Login</a><br>
 		<a href="/rango/about">About</a>
 	</body>
 </html>
