@@ -1,4 +1,5 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
@@ -152,3 +153,15 @@ def user_login(request):
     else:
         # Not a POST requestion, so probably a GET request, so show login form
         return render(request, 'rango/login.html', {})
+
+
+@login_required
+def user_logout(request):
+    # Since the user must be logged in, we can just log them out now
+    logout(request)
+    return HttpResponseRedirect('/rango')
+
+
+@login_required
+def restricted(request):
+    return HttpResponse("You can see this page because you're logged in.")
