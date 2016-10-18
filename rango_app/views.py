@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
@@ -13,11 +15,31 @@ def index(request):
         'categories_by_votes': Category.objects.order_by('-votes')[:5],
         'categories_by_views': Category.objects.order_by('-views')[:5]
     }
+
+    visits = request.session.get('visits') or 1
+    reset_last_visit_time = False
+
+    last_visit = request.session.get('last_visit')
+    if last_visit:
+        last_visit_time = datetime.strptime(last_visit[:-7], "%Y-%m-%d %H:%M:%S")
+
+        if (datetime.now() - last_visit_time).days > 0:
+            visits += 1
+            reset_last_visit_time = True
+    else:
+        # Cookie doesn't exsit so we need to set it
+        reset_last_visit_time = True
+
+    if reset_last_visit_time:
+        request.session['last_visit'] = str(datetime.now())
+        request.session['visits'] = visits
+
     return render(request, 'rango/index.html', context_dict)
 
 
 def about(request):
-    return render(request, 'rango/about.html', {})
+    visits = request.session.get('visits') or 1
+    return render(request, 'rango/about.html', {'visits': visits})
 
 
 def category(request, category_name_slug):
