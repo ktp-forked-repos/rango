@@ -34,7 +34,7 @@
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
 						{% if user.is_authenticated %}
-							<li><a href="{% url 'profile' %}?next=/rango">Profile</a></li>
+							<li><a href="{% url 'profile' %}">Profile</a></li>
 							<li><a href="{% url 'add_category' %}">Add a new category</a></li>
 						{% else %}
 							<li><a href="{% url 'registration_register' %}">Sign up</a></li>
