@@ -3,10 +3,6 @@
 {% block body_block %}
 	<div class="page-header"><h1>Front Page</h1></div>
 
-	{% if user.is_authenticated %}
-		<p>Signed in as {{ user.username }}</p>
-	{% endif %}
-
 	<div class="row placeholders">
 		<div class="col-xs-12 col-sm-6 placeholder">
 			<div class="panel panel-primary">

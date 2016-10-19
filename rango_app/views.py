@@ -1,11 +1,9 @@
 from datetime import datetime
 
-from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
-from rango_app.forms import CategoryForm, PageForm, UserForm, UserProfileForm
+from rango_app.forms import CategoryForm, PageForm
 from rango_app.models import Category, Page
 
 
@@ -39,8 +37,12 @@ def index(request):
 
 
 def about(request):
+    return render(request, 'rango/about.html', {})
+
+
+def profile(request):
     visits = request.session.get('visits') or 1
-    return render(request, 'rango/about.html', {'visits': visits})
+    return render(request, 'rango/profile.html', {'visits': visits})
 
 
 def category(request, category_name_slug):

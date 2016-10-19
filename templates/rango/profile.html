@@ -1,0 +1,19 @@
+{% extends 'rango/base.html' %}
+{% block title %} - About {% endblock %}
+
+{% block body_block %}
+	<div class="page-header"><h1>Profile</h1></div>
+
+	{% if user.is_authenticated %}
+		<p>You are logged in as {{ user.username }}.</p>
+		<p><a href="{% url 'auth_logout' %}?next=/rango">Logout</a></p>
+	{% else %}
+		<p>
+			You are not logged in.
+			<a href="{% url 'auth_login' %}">Login</a> or
+			<a href="{% url 'registration_register' %}">Sign up</a>
+		</p>
+	{% endif %}
+
+	<p> Visits: {{ visits }}</p>
+{% endblock %}
