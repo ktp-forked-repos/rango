@@ -1,37 +1,58 @@
 {% extends 'rango/base.html' %}
 
 {% block body_block %}
-	<h1>Front Page</h1>
+	<div class="page-header"><h1>Front Page</h1></div>
+
 	{% if user.is_authenticated %}
 		<p>Signed in as {{ user.username }}</p>
 	{% endif %}
 
-	{% if categories_by_votes %}
-		<h2>Most popular content</h2>
-		<ul>
-			{% for category in categories_by_votes %}
-			<li>
-				<a href="{% url 'category' category.slug %}">{{ category.name }}</a>
-				({{ category.votes }})
-			</li>
-			{% endfor %}
-		</ul>
-	{% else %}
-		<strong>No categories found with votes.</strong>
-	{% endif %}
+	<div class="row placeholders">
+		<div class="col-xs-12 col-sm-6 placeholder">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h2>Popular categories</h2>
+				</div>
+			</div>
 
-	{% if categories_by_views %}
-		<h2>Most viewed content</h2>
-		<ul>
-			{% for category in categories_by_views %}
-			<li>
-				<a href="{% url 'category' category.slug %}">{{ category.name }}</a>
-				({{ category.views }})
-			</li>
-			{% endfor %}
-		</ul>
-	{% else %}
-		<strong>No categories found with views.</strong>
-	{% endif %}
+			{% if categories_by_votes %}
+				<ul class="list-group">
+					{% for category in categories_by_votes %}
+					<li class="list-group-item">
+						<a href="{% url 'category' category.slug %}">
+							{{ category.name }}
+						</a>
+						({{ category.votes }})
+					</li>
+					{% endfor %}
+				</ul>
+			{% else %}
+				<strong>No categories found with votes.</strong>
+			{% endif %}
+		</div>
+
+		<div class="col-xs-12 col-sm-6 placeholder">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h2>Popular pages</h2>
+				</div>
+			</div>
+
+			{% if pages_by_votes %}
+				<ul class="list-group">
+					{% for page in pages_by_votes %}
+					<li class="list-group-item">
+						<a href="{{ page.url }}">
+							{{ page.title }}
+						</a>
+						- {{page.category}} ({{ page.views }})
+					</li>
+					{% endfor %}
+				</ul>
+			{% else %}
+				<strong>No pages found.</strong>
+			{% endif %}
+		</div>
+	</div>
 
 {% endblock %}

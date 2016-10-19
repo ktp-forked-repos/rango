@@ -13,7 +13,8 @@ from rango_app.models import Category, Page
 def index(request):
     context_dict = {
         'categories_by_votes': Category.objects.order_by('-votes')[:5],
-        'categories_by_views': Category.objects.order_by('-views')[:5]
+        'categories_by_views': Category.objects.order_by('-views')[:5],
+        'pages_by_votes': Page.objects.order_by('-views')[:5],
     }
 
     visits = request.session.get('visits') or 1

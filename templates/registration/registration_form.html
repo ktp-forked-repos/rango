@@ -2,7 +2,8 @@
 {% block title %} - Sign up{% endblock %}
 
 {% block body_block %}
-	<h1>Sign up</h1>
+	<div class="page-header"><h1>Sign up</h1></div>
+	
 	{% if not user.is_authenticated %}
 		<form method="post" action=".">
 			{% csrf_token %}
