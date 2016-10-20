@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from rango_app.forms import CategoryForm, PageForm
 from rango_app.models import Category, Page
@@ -103,3 +103,18 @@ def add_page(request, category_name_slug):
     context_dict = {'form': form, 'category': cat}
 
     return render(request, 'rango/add_page.html', context_dict)
+
+
+def track_url(request):
+    if 'page_id' in request.GET:
+        page_id = request.GET['page_id']
+
+        try:
+            page = Page.objects.get(id=page_id)
+            page.views += 1
+            page.save()
+            return redirect(page.url)
+        except Page.DoesNotExist:
+            pass
+
+    return redirect('rango')
