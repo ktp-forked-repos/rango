@@ -6,6 +6,8 @@
 
 	{% if user.is_authenticated %}
 		<p>You are logged in as {{ user.username }}.</p>
+		<p>Email: {{ user.email }}</p>
+		<p>Website: {{ user.website }}</p>
 		<p><a href="{% url 'auth_logout' %}?next=/rango">Logout</a></p>
 	{% else %}
 		<p>
