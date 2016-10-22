@@ -4,7 +4,7 @@
 {% block body_block %}
 	<div class="page-header"><h1>{{ category_name }}</h1></div>
 	
-	{% if category %}		
+	{% if category %}
 		{% if pages %}
 			<ul>
 				{% for page in pages %}
@@ -18,8 +18,15 @@
 		{% endif %}
 
 		{% if user.is_authenticated %}
-			<a href="/rango/category/{{ category.slug }}/add_page">Add a Page</a>
+			<p><a href="/rango/category/{{ category.slug }}/add_page">Add a Page</a></p>
 		{% endif %}
+
+		<p>
+			{% if user.is_authenticated %}
+				<button id="like-button" data-category-id="{{ category.id }}" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button>
+			{% endif %}
+			<strong>Likes: <span id="vote-count">{{ category.votes }}</span></strong>
+		</p>
 
 	{% else %}
 		<p>The category {{ category_name }} does not exist.

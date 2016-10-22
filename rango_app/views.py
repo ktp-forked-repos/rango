@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from rango_app.forms import CategoryForm, PageForm
@@ -103,6 +104,25 @@ def add_page(request, category_name_slug):
     context_dict = {'form': form, 'category': cat}
 
     return render(request, 'rango/add_page.html', context_dict)
+
+
+@login_required
+def like_category(request):
+    category_id = None
+    votes = 0
+
+    if request.method == 'GET':
+        if 'category_id' in request.GET:
+            category_id = request.GET['category_id']
+            try:
+                category = Category.objects.get(id=int(category_id))
+                votes = category.votes + 1
+                category.votes = votes
+                category.save()
+            except:
+                pass
+
+    return HttpResponse(votes)
 
 
 def track_url(request):
