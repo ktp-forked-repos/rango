@@ -7,3 +7,4 @@
 .DS_Store
 
 rango/settings.py
+rango/settings/secret_key.txt
