@@ -1,0 +1,56 @@
+{% extends 'cms2d/base.html' %}
+
+{% block body_block %}
+	<div class="page-header"><h1>Front Page</h1></div>
+
+	<p>Introduction</p>
+
+	<div class="row placeholders">
+		<div class="col-xs-12 col-sm-6 placeholder">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h2>Popular topics</h2>
+				</div>
+
+				{% if categories_by_votes %}
+					<ul class="list-group">
+						{% for category in categories_by_votes %}
+						<li class="list-group-item">
+							<a href="{% url 'category' category.slug %}">
+								{{ category.name }}
+							</a>
+							({{ category.votes }})
+						</li>
+						{% endfor %}
+					</ul>
+				{% else %}
+					<strong>No topics found.</strong>
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="col-xs-12 col-sm-6 placeholder">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h2>Featured topics</h2>
+				</div>
+
+				{% if pages_by_votes %}
+					<ul class="list-group">
+						{% for page in pages_by_votes %}
+						<li class="list-group-item">
+							<a href="{{ page.url }}">
+								{{ page.title }}
+							</a>
+							- {{page.category}} ({{ page.views }})
+						</li>
+						{% endfor %}
+					</ul>
+				{% else %}
+					<strong>No topics found.</strong>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
