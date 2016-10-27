@@ -12,14 +12,14 @@
 					<h2>Popular topics</h2>
 				</div>
 
-				{% if categories_by_votes %}
+				{% if topics_by_views %}
 					<ul class="list-group">
-						{% for category in categories_by_votes %}
+						{% for topic in topics_by_views %}
 						<li class="list-group-item">
-							<a href="{% url 'category' category.slug %}">
-								{{ category.name }}
+							<a href="{% url 'topic' topic.slug %}">
+								{{ topic.name }}
 							</a>
-							({{ category.votes }})
+							({{ topic.votes }})
 						</li>
 						{% endfor %}
 					</ul>

@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from cms2d.models import Topic
+
+admin.site.register(Topic)
