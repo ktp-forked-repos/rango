@@ -16,7 +16,7 @@ def home(request):
 @login_required
 def add_topic(request, topic_name_slug=None):
     if request.method == 'POST':
-        form = TopicForm(request.POST)
+        form = TopicForm(request.POST, initial={"author_id": request.user.id + 10})
 
         if form.is_valid():
             form.save(commit=True)
@@ -25,7 +25,7 @@ def add_topic(request, topic_name_slug=None):
             print form.errors
 
     else:
-        form = TopicForm()
+        form = TopicForm(initial={"author_id": request.user.id + 10})
 
     return render(request, 'cms2d/add_topic.html', {'form': form})
 
