@@ -10,7 +10,13 @@
 		{% endif %}
 
 		{% if user.is_authenticated %}
-			<div class="topic-description" contenteditable>{{ topic.description }}</div>
+			<div class="topic-description" contenteditable>
+				{% if topic.description %}
+					{{ topic.description }}
+				{% else %}
+					Click to add a description.
+				{% endif %}
+			</div>
 		{% else %}
 			<div class="topic-description">{{ topic.description }}</div>
 		{% endif %}
@@ -28,10 +34,12 @@
 		{% endif %}
 
 		{% if user.is_authenticated %}
-			<p><a href="/rango/category/{{ category.slug }}/add_page">Add a Page</a></p>
+			<form action="add_page">
+    			<input class="btn btn-primary" type="submit" value="Add a page" />
+			</form>
 		{% endif %}
 
-		<p>
+		<div>
 			{% if user.is_authenticated %}
 				<button id="save-button" class="btn btn-success" type="button">Save</button>
 			{% else %}
@@ -41,7 +49,7 @@
 					<span id="vote-count">{{ category.votes }}</span>
 				</button>
 			{% endif %}
-		</p>
+		</div>
 
 	{% else %}
 		<p>The topic {{ topic_name }} does not exist.

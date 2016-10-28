@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
 from cms2d.forms import TopicForm
-from cms2d.models import Topic, User
+from cms2d.models import Topic
 
 
 def home(request):
@@ -16,7 +17,6 @@ def home(request):
 @login_required
 def add_topic(request, topic_name_slug=None):
     if request.method == 'POST':
-        #form = TopicForm(request.POST, initial={"author_id": request.user.id})
         form = TopicForm(request.POST)
 
         if form.is_valid():
@@ -34,6 +34,7 @@ def add_topic(request, topic_name_slug=None):
 def topic(request, topic_name_slug):
     context_dict = {}
 
+    # Get topic and the user who created it
     try:
         topic = Topic.objects.get(slug=topic_name_slug)
 
@@ -50,3 +51,8 @@ def topic(request, topic_name_slug):
         pass
 
     return render(request, 'cms2d/topic.html', context_dict)
+
+
+def add_topic_page(request, topic_name_slug):
+    context_dict = {}
+    return render(request, 'cms2d/index.html', context_dict)

@@ -6,17 +6,18 @@
     <div class="page-header"><h1>Create a new topic</h1></div>
 
     <form id="topic_form" role="form" method="post" action="add_topic">
-    {% csrf_token %}
-    
-    {% for hidden in form.hidden_fields %}
-        {{ hidden }}
-    {% endfor %}
+        {% csrf_token %}
+        
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
 
-    {% for field in form.visible_fields %}
-        {{ field.errors }}
-        {{ field.help_text }}
-        {{ field }}
-    {% endfor %}
+        {% for field in form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}
+            {{ field }}
+        {% endfor %}
 
-    <button class="btn btn-primary" type="submit" name="submit">Create Topic</button>
+        <button class="btn btn-primary" type="submit" name="submit">Create Topic</button>
+    </form>
 {% endblock %}

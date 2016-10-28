@@ -1,7 +1,6 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
 
@@ -20,3 +19,13 @@ class Topic(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Page(models.Model):
+    topic = models.ForeignKey(Topic)
+    title = models.CharField(max_length=128)
+    text = models.TextField(default="")
+    views = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.title
