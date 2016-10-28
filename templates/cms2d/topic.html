@@ -5,6 +5,10 @@
 	<div class="page-header"><h1>{{ topic_name }}</h1></div>
 	
 	{% if topic %}
+		{% if author %}
+			<div>Author: {{ author.username }}</div>
+		{% endif %}
+
 		{% if user.is_authenticated %}
 			<div class="topic-description" contenteditable>{{ topic.description }}</div>
 		{% else %}
